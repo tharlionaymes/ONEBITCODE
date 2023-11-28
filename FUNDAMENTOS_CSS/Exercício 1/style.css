@@ -1,0 +1,30 @@
+body{
+    background-image: url(fernando_noronhajpg);
+    background-size: cover;
+}
+
+header{
+    background-color:#248030;
+    color: #fff;
+    border-radius: 5px;
+}
+
+main{
+    background-color:#ffff8c;
+    color: #000000;
+    border-radius: 5px;
+}
+
+section a{
+    color: #248030;
+}
+
+section button{
+    background-color: #248030;
+    border-radius: 5px;
+}
+
+footer{
+    background-color: #fff;
+    border-radius: 5px;
+}
