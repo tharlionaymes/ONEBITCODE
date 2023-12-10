@@ -30,6 +30,7 @@ document.getElementById("contador").innerText= "Visitou " + contador + " cidade(
 document.getElementById("cidades").innerText= "As cidades visitadas foram: " + cidades.join(", ").toLocaleUpperCase();
 
 
+
 /*Resolução do Professor
 
 const turista = prompt("E aí, turista! Qual é o seu nome?")
