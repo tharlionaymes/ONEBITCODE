@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Exercício 11</title>
+  </head>
+  <body>
+    <h1>Escalação do Time</h1>
+    <nav>
+      <a href="regras.html">Regras do Exercício</a>
+    </nav>
+    <hr><br>
+    
+    <h2>Escalar Jogador</h2>    
+
+    <label for="iposicao">Posição:</label>
+    <input type="text" name="posicao" id="iposicao" />
+    
+    <label for="inome">Nome:</label>
+    <input type="text" name="nome" id="inome" />
+    
+    <label for="icamisa">Nº da Camisa:</label>
+    <input type="number"  name="camisa" id="icamisa" />
+
+    <button onclick="addPlayer()">Escalar</button>
+    
+    <h2>Remover Jogador</h2>    
+        
+    <label for="icamisa">Nº da Camisa:</label>
+    <input type="number"  name="camisa" id="inumber" />
+
+    <button onclick="removePlayer()">Remover</button>
+        
+    <h2>Time</h2>
+    <section id="escalacao-time">
+        <p>Posição  Nome    Camisa </p>
+    </section>
+
+    <script src="scripts.js"></script>
+  </body>
+</html>
