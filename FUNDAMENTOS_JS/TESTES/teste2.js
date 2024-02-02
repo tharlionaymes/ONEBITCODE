@@ -1,26 +1,43 @@
-function show(){
-    const contactList = document.getElementById("contact1").value
-    const contato2 = document.querySelectorAll("contact-input").value
-    console.log(contactList)
-    console.log(contato2)
+const add = document.getElementById("addContact")
+const remove = document.getElementById("removeContact")
+
+function addContact(){
+    const contactSection = document.getElementById("contact-list")
+    
+    const h3 = document.createElement("h3")
+    h3.innerText = "Contato"
+
+    const ul = document.createElement("ul")
+    ul.id = "lista"
+    const nameLi = document.createElement("li")
+    nameLi.innerText = "Nome: ";    
+    
+    const nameLabel = document.createElement('label');
+    nameLabel.for = "0-2"
+    nameLabel.innerText = "0-2 anos"
+
+    console.log(nameLabel)
+
+    const nameInput = document.createElement('input');
+    nameInput.type = "radio"
+    nameInput.value = "0-2"
+    nameInput.name ="fullname"
+
+    nameLi.appendChild(nameInput)
+    nameLi.appendChild(nameLabel)
+    ul.appendChild(nameLi)
+
+
+    contactSection.append(h3,ul)
 }
 
-/*function show(){
-    const liElements = document.getElementsByTagName("li")
-    console.log(liElements)
-    console.log(liElements.innerText)
+function removeContact(){
+    const contactSection = document.getElementById("contact-list")
+    const list = document.getElementById("lista")
+
+    contactSection.removeChild(list)
+    console.log(contactSection)
 }
-/*function show(){
-    const contactInputs = document.getElementsByClassName("contact-input")
-    console.log(contactInputs)
-}*/
-/*function show(){
-    const contacts = document.querySelectorAll("#contact-list > li > input")
-    console.log(contacts)
-    console.log(contacts.text)
-}*/
-/*function show(){
-    const contact = document.querySelector("#contact-list > li > label")
-    console.log(contact)
-    console.log(contact.textContent)
-}*/
+
+add.addEventListener("click", addContact)
+remove.addEventListener("click",removeContact)
