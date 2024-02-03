@@ -1,92 +1,90 @@
-const add = document.getElementById("addTech")
-//const remove = document.getElementById("removeContact")
+//funções auxiliares para agilizar o processo de criação dos elementos, já que faremos isso várias vezes:
 
-function addTech(){
-
-    const divAddTech = document.getElementById("div-addTech")
-    const div = document.createElement("div")
-    divAddTech.appendChild(div)
-
-    const techLabel = document.createElement("label")
-    techLabel.for = "addTech2"
-    techLabel.innerText = "Tecnologias: "
-
-    const techInput = document.createElement("input")
-    techInput.type = "text"
-    techInput.id = "technology"
-    techInput.name = "technology"
-    techInput.required = true
-
-    div.appendChild(techLabel)
-    div.appendChild(techInput)
-
-    
-    const nameLabel02 = document.createElement('label');
-    nameLabel02.for = "0-2"
-    nameLabel02.innerText = "0-2 anos "
-
-    const nameInput02 = document.createElement('input');
-    nameInput02.type = "radio"
-    nameInput02.value = "0-2"
-    nameInput02.name ="opcao"
-
-    div.appendChild(nameInput02)
-    div.appendChild(nameLabel02)
-
-    const nameLabel34 = document.createElement('label');
-    nameLabel34.for = "3-4"
-    nameLabel34.innerText = "3-4 anos "
-
-    const nameInput34 = document.createElement('input');
-    nameInput34.type = "radio"
-    nameInput34.value = "3-4"
-    nameInput34.name ="opcao"
-
-    div.appendChild(nameInput34)
-    div.appendChild(nameLabel34)
-    
-    const nameLabel5 = document.createElement('label');
-    nameLabel5.for = "5"
-    nameLabel5.innerText = "5+ anos "
-
-    const nameInput5 = document.createElement('input');
-    nameInput5.type = "radio"
-    nameInput5.value = "5"
-    nameInput5.name ="opcao"
-
-    div.appendChild(nameInput5)
-    div.appendChild(nameLabel5)
-
-    const button = document.createElement("button")
-    button.innerText = "Remover"
-    button.type = "button"
-
-    div.appendChild(button)
-
-    //const remove = document.getElementsByClassName("removeTech")
-    
-    function removeTech(){
-    const divParent = document.getElementById("div-addTech")
-    const removeDivTech = document.getElementById("div-inside")
-    divParent.removeChild(removeDivTech)
-
-    }
-    //remove.addEventListener("click", removeTech)
-    
-
-    div.append(document.createElement("br"))
-    div.append(document.createElement("br"))
+function createLabel(text, htmlFor) {
+    const label = document.createElement('label')
+    label.htmlFor = htmlFor
+    label.innerText = text
+    return label
+}
+  
+  function createInput(id, value, name, type = 'text', placeholder = '') {
+    const input = document.createElement('input')
+    input.id = id
+    input.value = value
+    input.name = name
+    input.type = type
+    input.placeholder = placeholder
+    return input
 }
 
-/*function removeContact(){
-    const contactSection = document.getElementById("contact-list")
-    const list = document.getElementById("lista")
+//Variaveis globais
+const addTechBtn = document.getElementById('addTechBtn')
+const form = document.getElementById('devForm')
+const developers = []
+let inputRows = 0
 
-    contactSection.removeChild(list)
-    console.log(contactSection)
-}
-*/
+//evento do botão que adiciona os novos campos no formulário:
+addTechBtn.addEventListener('click', function (ev) {
+    const stackInputs = document.getElementById('stackInputs')
+  
+    const newRow = document.createElement('li')
+    const rowIndex = inputRows
+    inputRows++
+    newRow.id = 'inputRow-' + rowIndex
+    newRow.className = 'inputRow'
+  
+    const techNameLabel = createLabel('Nome: ', 'techName-' + rowIndex)
+    const techNameInput = createInput('techName-' + rowIndex, null, 'techName')
+  
+    const expLabel = createLabel('Experiência: ')
+    const id1 = 'expRadio-' + rowIndex + '.1'
+    const expRadio1 = createInput(id1, '0-2 anos', 'techExp-' + rowIndex, 'radio')
+    const expLabel1 = createLabel('0-2 anos', id1)
+    const id2 = 'expRadio-' + rowIndex + '.2'
+    const expRadio2 = createInput(id2, '3-4 anos', 'techExp-' + rowIndex, 'radio')
+    const expLabel2 = createLabel('3-4 anos', id2)
+    const id3 = 'expRadio-' + rowIndex + '.3'
+    const expRadio3 = createInput(id3, '5+ anos', 'techExp-' + rowIndex, 'radio')
+    const expLabel3 = createLabel('5+ anos', id3)
+  
+    const removeRowBtn = document.createElement('button')
+    removeRowBtn.type = 'button'
+    removeRowBtn.innerText = 'Remover'
+    removeRowBtn.addEventListener('click', function () {
+      stackInputs.removeChild(newRow)
+    })
+  
+  
+    newRow.append(
+      techNameLabel, techNameInput, expLabel, expRadio1, expLabel1, expRadio2, expLabel2, expRadio3, expLabel3, removeRowBtn
+    )
+  
+    stackInputs.appendChild(newRow)
+  })
 
-add.addEventListener("click", addTech)
-//remove.addEventListener("click",removeContact)
-
+  // Evento de submissão do formulário
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault()
+  
+    const fullnameInput = document.getElementById('fullname')
+    const inputRows = document.querySelectorAll('.inputRow')
+  
+    let technologies = []
+    inputRows.forEach(function (row) {
+      // #rowId input[name="techName"]
+      const techName = document.querySelector('#' + row.id + ' input[name="techName"]').value
+      const techExp = document.querySelector('#' + row.id + ' input[type="radio"]:checked').value
+      technologies.push({ name: techName, exp: techExp })
+    })
+  
+    const newDev = { fullname: fullnameInput.value, technologies: technologies }
+    developers.push(newDev)
+    alert('Dev cadastrado com sucesso!')
+  
+    fullnameInput.value = ''
+    inputRows.forEach(function (row) {
+      row.remove()
+    })
+  
+    console.log(developers)
+  })
