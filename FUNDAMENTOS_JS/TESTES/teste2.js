@@ -1,43 +1,27 @@
-const add = document.getElementById("addContact")
-const remove = document.getElementById("removeContact")
-
-function addContact(){
-    const contactSection = document.getElementById("contact-list")
-    
-    const h3 = document.createElement("h3")
-    h3.innerText = "Contato"
-
-    const ul = document.createElement("ul")
-    ul.id = "lista"
-    const nameLi = document.createElement("li")
-    nameLi.innerText = "Nome: ";    
-    
-    const nameLabel = document.createElement('label');
-    nameLabel.for = "0-2"
-    nameLabel.innerText = "0-2 anos"
-
-    console.log(nameLabel)
-
-    const nameInput = document.createElement('input');
-    nameInput.type = "radio"
-    nameInput.value = "0-2"
-    nameInput.name ="fullname"
-
-    nameLi.appendChild(nameInput)
-    nameLi.appendChild(nameLabel)
-    ul.appendChild(nameLi)
+const qdd = document.getElementById("clique")
+const div = document.getElementById("container")
 
 
-    contactSection.append(h3,ul)
+function clicar(){
+    qdd.innerText = "CLICOU!!!"
+    qdd.style.backgroundColor = "red"
+};
+
+function entrar(){
+    qdd.innerText = "ENTROU!!!"
+    qdd.style.backgroundColor = "green"
 }
 
-function removeContact(){
-    const contactSection = document.getElementById("contact-list")
-    const list = document.getElementById("lista")
-
-    contactSection.removeChild(list)
-    console.log(contactSection)
+function sair(){
+    qdd.innerText = "SAIU!!!"
+    qdd.style.backgroundColor = "#05f"
+}
+function interagir(){
+    qdd.innerText = "Interação"
+    qdd.style.backgroundColor = "yellow"
 }
 
-add.addEventListener("click", addContact)
-remove.addEventListener("click",removeContact)
+qdd.addEventListener("click", clicar)
+qdd.addEventListener("mouseenter", entrar)
+qdd.addEventListener("mouseleave",sair)
+div.addEventListener("mouseout", interagir)
