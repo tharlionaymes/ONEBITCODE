@@ -10,8 +10,7 @@ module.exports = { // Exporta a configuração do webpack
                 use: ["style-loader", "css-loader"] // Utiliza os loaders style-loader e css-loader para processar arquivos CSS
             }, 
             { // Segunda regra
-                test: /\.js$/, // Aplica essa regra a arquivos JavaScript
-                exclude: /node_modules/, // Exclui o diretório node_modules do processamento
+                test: /\.js$/, // Aplica essa regra a arquivos JavaScript    
                 use: ["babel-loader"] // Utiliza o babel-loader para transpilar arquivos JavaScript
             }
         ]
